@@ -1,5 +1,8 @@
 from math import exp
-import enum
+from matplotlib.pyplot import plot, show
+from numpy import arange
+
+import fire
 
 class Unit:
 	def __init__(self):
@@ -33,7 +36,7 @@ def dropdead(t: float):
 	Compute the percentage of maximum exertion an athlete can expend for
 	the given duration in minutes
 	"""
-	return math.exp(-0.1932605*t)*0.2989558 + 0.1894393*math.exp(-0.012778*t) + 0.8
+	return exp(-0.1932605*t)*0.2989558 + 0.1894393*exp(-0.012778*t) + 0.8
 
 def vo2req(t, d):
 	"""
@@ -41,3 +44,12 @@ def vo2req(t, d):
 	the given distance (in meters) in the allotted time (in minutes)
 	"""
 	return o2cost(d/t)/dropdead(t)
+
+def milesToKm(miles):
+	return 5/3.10686*miles
+
+def kmToMiles(km):
+	return 3.10686/5*km
+
+if __name__ == "__main__":
+	fire.Fire()
